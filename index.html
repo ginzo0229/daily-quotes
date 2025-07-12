@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>日替わり名言</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+    .quote { font-size: 24px; margin: 20px; }
+    .author { color: gray; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <h1>🌞 今日のひとこと 🌞</h1>
+  <div class="quote" id="quote">読み込み中...</div>
+  <div class="author" id="author"></div>
+
+  <script>
+    fetch("https://type.fit/api/quotes")
+      .then(response => response.json())
+      .then(data => {
+        const today = new Date();
+        const index = today.getDate() % data.length;
+        const quote = data[index];
+        document.getElementById("quote").textContent = `"${quote.text}"`;
+        document.getElementById("author").textContent = quote.author ? `- ${quote.author}` : "- Unknown";
+      });
+  </script>
+</body>
+</html>
