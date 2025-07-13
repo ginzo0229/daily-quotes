@@ -16,7 +16,7 @@
   <div class="author" id="author"></div>
 
   <script>
-    fetch("https://type.fit/api/quotes")
+    fetch("https://api.quotable.io/random")
       .then(response => response.json())
       .then(data => {
         const today = new Date();
